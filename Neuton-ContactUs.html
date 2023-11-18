@@ -9,6 +9,15 @@
     <link rel="stylesheet" href="style.css">
     <!-- Fontawesome icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    
+    <!-- ----------- start script for email js form -->
+    <script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("0XpC30yg7gM4VDRSv");
+      })();
+    </script>
+    <!-- ----------- End script for email js form -->
   </head>
   <body>
 
@@ -51,7 +60,7 @@
         </div>
 
         <div class = "contact-form">
-          <form>
+          <form id ="contact-form">
             <div>
               <input type = "text" id="name" class = "form-control" placeholder=" Name" name="name" required="">
               <!-- <input type = "text" class = "form-control" placeholder="Last Name"> -->
@@ -71,27 +80,67 @@
       </div>
 
                <!-- -------------- Start of script sending email------ -->
-         <script type="text/javascript">
-					const Subscribee = document.getElementById('Subscribee');
-					Subscribee.addEventListener('submit', function (event) {
-						event.preventDefault();
-						// Send email to admin
-						emailjs.sendForm('service_y83zs3n', 'template_admin', this)
-							.then(function () {
-								console.log('Email sent to admin');
-							}, function (error) {
-								console.error('An error occurred while sending email to admin:', error);
-							});
-			
-						// Send email to user
-						emailjs.sendForm('service_y83zs3n', 'template_user', this)
-							.then(function () {
-								alert('subscribe done!');
-							}, function (error) {
-								alert('An error occurred, please try again later.');
-							});
-					});
-				</script>
+               <script type="text/javascript">
+                const contactForm = document.getElementById('contact-form');
+                contactForm.addEventListener('submit', function (event) {
+                  event.preventDefault();
+                  // Send email to admin
+                  emailjs.sendForm('service_y83zs3n', 'template_admin', this)
+                    .then(function () {
+                      console.log('Email sent to admin');
+                    }, function (error) {
+                      console.error('An error occurred while sending email to admin:', error);
+                    });
+            
+                  // Send email to user
+                  emailjs.sendForm('service_y83zs3n', 'template_user', this)
+                    .then(function () {
+                      alert('Email Sent!');
+                    }, function (error) {
+                      alert('An error occurred, please try again later.');
+                    });
+                });
+              </script>
+
+
+
+<script type="text/javascript">
+  // Function to hide the loading element
+  function hideLoadingElement() {
+    var loadingElement = document.querySelector('.loading');
+    if (loadingElement) {
+      loadingElement.style.display = 'none';
+    }
+  }
+
+  const contactForm = document.getElementById('contact-form');
+  contactForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    // Send email to admin
+    emailjs.sendForm('service_252fr8z', 'template_admin', this)
+      .then(function () {
+        console.log('Email sent to admin');
+      }, function (error) {
+        console.error('An error occurred while sending email to admin:', error);
+      });
+
+    // Send email to user
+    emailjs.sendForm('service_252fr8z', 'template_user', this)
+      .then(function () {
+        // Allow a short delay before hiding the loading element
+        setTimeout(function () {
+          hideLoadingElement();
+        }, 100);
+        alert('تم إرسال رسالتك!');
+      }, function (error) {
+        // Hide the loading element in case of an error
+        hideLoadingElement();
+        alert('An error occurred, please try again later.');
+      });
+  });
+</script>
+
          <!----------------- End of script sending email--------->
       <div class = "map">
         <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d223700.1490386933!2d-97.11558670486288!3d28.829485511234168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864266db2e2dac3b%3A0xeee20d566f63267d!2sVictoria%2C%20TX%2C%20USA!5e0!3m2!1sen!2snp!4v1604921178092!5m2!1sen!2snp" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> -->
